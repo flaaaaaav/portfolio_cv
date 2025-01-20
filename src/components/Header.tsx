@@ -1,22 +1,20 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { FaGithub, FaFigma, FaEnvelope, FaFileAlt } from "react-icons/fa"; // Importación de íconos
+import { FaGithub, FaFileAlt, FaLinkedin } from "react-icons/fa"; 
 import { useTheme } from "@mui/material/styles";
 import CustomHeaderIcon from "./CustomHeaderButton";
 
 const Header: React.FC = () => {
   const handleLogoClick = (link: string) => {
-    window.open(link, "_blank"); // Abrir el enlace en una nueva ventana
+    window.open(link, "_blank"); 
   };
 
   const theme = useTheme();
 
-  // Definir los íconos y los enlaces
   const icons = [
-    { component: FaFileAlt, link: "https://example1.com" },
-    { component: FaEnvelope, link: "https://example2.com" },
-    { component: FaGithub, link: "https://example3.com" },
-    { component: FaFigma, link: "https://example4.com" },
+    { component: FaFileAlt, link: "/docs/Flavio-Guillermo-Salas-38455360.pdf" },
+    { component: FaLinkedin, link: "https://www.linkedin.com/in/flavio-guillermo-salas/" },
+    { component: FaGithub, link: "https://github.com/flaaaaaav/" },
   ];
 
   return (
@@ -28,7 +26,6 @@ const Header: React.FC = () => {
         padding: 3,
       }}
     >
-      {/* Título */}
       <Typography
         variant="h3"
         component="h1"
@@ -39,7 +36,6 @@ const Header: React.FC = () => {
         Flavio Salas
       </Typography>
 
-      {/* Subtítulo */}
       <Typography
         variant="subtitle1"
         color="text.secondary"
@@ -49,7 +45,6 @@ const Header: React.FC = () => {
         TypeScript, Python y Java.
       </Typography>
 
-      {/* Lista de íconos */}
       <Box
         sx={{
           display: "flex",
@@ -61,9 +56,9 @@ const Header: React.FC = () => {
           return (
             <CustomHeaderIcon
               key={index}
-              onClick={() => handleLogoClick(icon.link)} // Manejar el clic
-              icon={<IconComponent size={0} />} // Pasar el ícono
-              size="45px" // Tamaño del ícono
+              onClick={() => handleLogoClick(icon.link)} 
+              icon={<IconComponent size={0} />} 
+              size="45px" 
               sx={{
                 marginRight: ".5rem",
                 backgroundColor: "transparent",

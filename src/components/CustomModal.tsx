@@ -4,7 +4,6 @@ import {
   DialogContent,
   Box,
   Typography,
-  Button,
   IconButton,
   useMediaQuery,
   useTheme,
@@ -18,9 +17,9 @@ interface CustomModalProps {
   open: boolean;
   onClose: () => void;
   title: string;
-  subtitle: React.ReactNode; // Cambiar aquí para aceptar React.ReactNode en lugar de string
+  subtitle: React.ReactNode;
   languages: string[];
-  demoLink: string;
+  demoLink?: string;
   repoLink: string;
   imageSrc: string;
 }
@@ -50,7 +49,14 @@ const CustomModal: React.FC<CustomModalProps> = ({
       open={open}
       onClose={onClose}
       TransitionComponent={Transition}
-      fullScreen // El fondo del diálogo ocupa toda la pantalla
+      fullScreen
+      sx={{
+        "& .MuiDialog-paper": {
+          bgcolor: theme.palette.background.default,
+      boxShadow: "none", 
+      backgroundImage: "none", 
+        },
+      }}
     >
       <Box
         sx={{
@@ -58,54 +64,55 @@ const CustomModal: React.FC<CustomModalProps> = ({
         }}
       >
         <Box
-          sx={{
-            pl: 4,
-            mt: 4,
-            minWidth: "1000px",
-            display: "flex",
-            justifyContent: "flex-start",
-          }}
-        >
-          <IconButton
-            onClick={onClose}
-            sx={{
-              backgroundColor: "transparent",
-              alignSelf: "flex-start",
-              transition: "transform .5s ease-in-out",
-              "&:hover": {
-                backgroundColor: "transparent",
-                transform: "scale(1.5) rotate(360deg)",
-              },
-            }}
-          >
-            <FaArrowLeft />
-          </IconButton>
-        </Box>
+  sx={{
+    bgcolor: theme.palette.background.default,
+    pl: 4,
+    mt: 2,
+    mb: 2,
+    minWidth: "1000px",
+    display: "flex",
+    justifyContent: "flex-start",
+  }}
+>
+  <IconButton
+    onClick={onClose}
+    sx={{
+      backgroundColor: "transparent",
+      alignSelf: "flex-start",
+      transition: "transform .5s ease-in-out",
+      "&:hover": {
+        backgroundColor: "transparent",
+        transform: "scale(1.5) rotate(360deg)",
+      },
+    }}
+  >
+    <FaArrowLeft />
+  </IconButton>
+</Box>
+
       </Box>
       <DialogContent
         sx={{
           display: "flex",
-          justifyContent: "center", // Centra horizontalmente
-          height: "100%", // Asegura que ocupe toda la altura de la pantalla
+          justifyContent: "center",
+          height: "100%",
           bgcolor: theme.palette.background.default,
-          color: theme.palette.text.primary,
-          overflowY: "auto", // Permite desplazamiento si el contenido es alto
-          p: 0, // Elimina padding para personalizar completamente el diseño
+                    color: theme.palette.text.primary,
+          overflowY: "auto",
+          p: 0,
         }}
       >
-        {/* Contenedor con ancho limitado */}
         <Box
           sx={{
-            maxWidth: "1000px", // Ancho máximo del contenido
-            width: "100%", // Ocupa todo el ancho disponible hasta maxWidth
+            maxWidth: "1000px",
+            width: "100%",
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
             alignItems: isMobile ? "center" : "flex-start",
             justifyContent: "space-between",
-            p: 4, // Espaciado interno
+            p: 4,
           }}
         >
-          {/* Sección Izquierda */}
           <Box
             sx={{
               flex: 1,
@@ -142,12 +149,24 @@ const CustomModal: React.FC<CustomModalProps> = ({
               ))}
             </ul>
             <Box sx={{ display: "flex", gap: 2, mt: 3, mb: 5 }}>
-              <CustomButton variantColor="blue">Demo</CustomButton>
-              <CustomButton variantColor="green">Repositorio</CustomButton>
+              {demoLink && (
+                <CustomButton
+                  variantColor="blue"
+                  iconType="web"
+                  onClick={() => window.open(demoLink, "_blank")}
+                >
+                  Demo
+                </CustomButton>
+              )}
+              <CustomButton
+                variantColor="green"
+                iconType="github"
+                onClick={() => window.open(repoLink, "_blank")}
+              >
+                Repositorio
+              </CustomButton>
             </Box>
           </Box>
-
-          {/* Sección Derecha */}
           <Box
             sx={{
               flex: 1,

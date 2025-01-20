@@ -1,10 +1,11 @@
 // Footer.tsx
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import { GitHub } from "@mui/icons-material"; // Puedes usar el ícono de GitHub o cualquier otro
 
 const Footer: React.FC = () => {
   const theme = useTheme();
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <Box
@@ -23,7 +24,7 @@ const Footer: React.FC = () => {
         variant="body2"
         sx={{ display: "flex", alignItems: "center" }}
       >
-        2024 © Flavio Salas
+         {currentYear} © Flavio Salas.
       </Typography>
     </Box>
   );

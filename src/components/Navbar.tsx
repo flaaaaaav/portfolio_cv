@@ -3,7 +3,7 @@ import { AppBar, Toolbar } from "@mui/material";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 import { ThemeContext } from "../context/ThemeContext";
 import { useTheme } from "@mui/material/styles";
-import CustomIcon from "./CustomIcon"; // Asegúrate de importar CustomIcon
+import CustomIcon from "./CustomIcon";
 
 const Navbar: React.FC = () => {
   const themeContext = useContext(ThemeContext);
@@ -17,8 +17,8 @@ const Navbar: React.FC = () => {
   const theme = useTheme();
 
   const handleThemeToggle = (event: React.MouseEvent) => {
-    event.stopPropagation(); // Detiene la propagación del clic
-    toggleTheme(); // Cambia el tema
+    event.stopPropagation(); 
+    toggleTheme();
   };
 
   return (
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
     >
       <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
         <CustomIcon
-          onClick={handleThemeToggle} // Llamar al manejador de clics para el tema
+          onClick={handleThemeToggle}
           icon={themeMode === "light" ? <Brightness4 /> : <Brightness7 />}
           color="inherit"
           sx={{

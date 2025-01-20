@@ -1,17 +1,18 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import CustomExperimentIcon from "./CustomExperimentsIcon";
 
 interface ExperimentCardProps {
   title: string;
   description: string;
-  iconUrl: string; // URL del icono PNG
+  icon: React.ReactElement;
   onClick: () => void;
 }
 
 const ExperimentsCard: React.FC<ExperimentCardProps> = ({
   title,
   description,
-  iconUrl,
+  icon,
   onClick,
 }) => {
   return (
@@ -20,22 +21,21 @@ const ExperimentsCard: React.FC<ExperimentCardProps> = ({
         display: "flex",
         alignItems: "center",
         textAlign: "left",
-        padding: 2,
-        mb: "2rem",
+        padding: ".5rem 2rem",
         cursor: "pointer",
         transition: "all 0.3s ease",
         maxWidth: "500px",
         "&:hover": {
-          transform: "translateX(10px)", // Mueve el componente 10px hacia la derecha
+          transform: "translateX(10px)",
         },
       }}
       onClick={onClick}
     >
       <Box sx={{ marginRight: 2 }}>
-        <img src={iconUrl} alt="experiment-icon" width="30" height="30" />
+        <CustomExperimentIcon icon={icon} />
       </Box>
       <Box>
-        <Typography variant="body2" fontWeight="600" sx={{}}>
+        <Typography variant="body2" fontWeight="600">
           {title}
         </Typography>
         <Typography variant="body2">{description}</Typography>

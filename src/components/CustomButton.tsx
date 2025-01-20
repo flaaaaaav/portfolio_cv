@@ -1,17 +1,18 @@
-import React from "react";
 import { Button, ButtonProps } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { FaGithub, FaGlobe } from "react-icons/fa"; // Importa los íconos necesarios
 
 interface CustomButtonProps extends ButtonProps {
   variantColor: "blue" | "green";
+  iconType?: "github" | "web"; // Propiedad adicional para definir el ícono
 }
 
 const CustomButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== "variantColor",
 })<CustomButtonProps>(({ theme, variantColor }) => {
   const lightColors = {
-    blue: "#4a70cb",
-    green: "#4acb59",
+    blue: "#1D0F0F",
+    green: "#021E20",
   };
 
   const darkColors = {
@@ -25,20 +26,35 @@ const CustomButton = styled(Button, {
     backgroundColor: colors[variantColor],
     fontSize: "16px",
     color: "#fdfdfd",
-    fontWeight: "bold",
-    borderRadius: "12px",
+    borderRadius: "0px",
     paddingLeft: "16px",
     paddingRight: "16px",
     textTransform: "none",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px", // Espacio entre el ícono y el texto
+    transition: "transform 0.3s ease",
     "&:hover": {
-      transition: ".3s",
-      scale: "1.1",
+      transform: "translateX(10px)", // Mover 10px hacia la derecha
       backgroundColor: colors[variantColor],
-      opacity: 0.5,
     },
   };
 });
 
 export default function CustomButtonComponent(props: CustomButtonProps) {
-  return <CustomButton {...props}>{props.children}</CustomButton>;
+  const { iconType, children, ...rest } = props;
+
+  let icon;
+  if (iconType === "github") {
+    icon = <FaGithub />;
+  } else if (iconType === "web") {
+    icon = <FaGlobe />;
+  }
+
+  return (
+    <CustomButton {...rest}>
+      {icon}
+      {children}
+    </CustomButton>
+  );
 }

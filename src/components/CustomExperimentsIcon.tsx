@@ -1,18 +1,18 @@
 import React from "react";
 import { IconButton } from "@mui/material";
 
-interface CustomHeaderIconProps {
+interface CustomExperimentIconProps {
   icon: React.ReactElement;
-  onClick: () => void;
   size?: string;
   sx?: object;
+  onClick?: () => void;
 }
 
-const CustomHeaderIcon: React.FC<CustomHeaderIconProps> = ({
+const CustomExperimentIcon: React.FC<CustomExperimentIconProps> = ({
   icon,
-  onClick,
   size = "50px",
   sx = {},
+  onClick,
 }) => {
   return (
     <IconButton
@@ -24,14 +24,12 @@ const CustomHeaderIcon: React.FC<CustomHeaderIconProps> = ({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "50%",
-        transition: "background-color 0.2s, transform 0.2s ease-out",
         backgroundColor: "transparent",
+        "&:hover": {
+          backgroundColor: "transparent",
+        },
         "& svg": {
           fill: "currentColor",
-          transition: "fill 0.5s",
-        },
-        "&:hover": {
-          backgroundColor: "rgba(0, 0, 0, 0.08)",
         },
         ...sx,
       }}
@@ -41,4 +39,4 @@ const CustomHeaderIcon: React.FC<CustomHeaderIconProps> = ({
   );
 };
 
-export default CustomHeaderIcon;
+export default CustomExperimentIcon;

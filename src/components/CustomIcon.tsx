@@ -1,10 +1,9 @@
 import React from "react";
 import { IconButton } from "@mui/material";
-import { SvgIconProps } from "@mui/material/SvgIcon";
 
 interface CustomIconProps {
-  icon?: React.ReactElement; // Elemento de ícono (e.g. <Brightness4 />)
-  src?: string; // Propiedad para el src de la imagen
+  icon?: React.ReactElement;
+  src?: string;
   onClick: (event: React.MouseEvent) => void;
   color?:
     | "inherit"
@@ -14,23 +13,23 @@ interface CustomIconProps {
     | "error"
     | "info"
     | "success"
-    | "warning"; // Valor restringido
-  size?: string; // Tamaño opcional
-  sx?: object; // Estilos opcionales
+    | "warning";
+  size?: string;
+  sx?: object;
 }
 
 const CustomIcon: React.FC<CustomIconProps> = ({
   icon,
   src,
   onClick,
-  color = "inherit", // Valor predeterminado para el color
-  size = "36px", // Valor predeterminado para el tamaño
+  color = "inherit",
+  size = "36px",
   sx = {},
 }) => {
   return (
     <IconButton
       onClick={onClick}
-      color={color} // Asegúrate de que sea un valor válido de "inherit", "primary", etc.
+      color={color}
       sx={{
         height: size,
         width: size,
@@ -39,26 +38,26 @@ const CustomIcon: React.FC<CustomIconProps> = ({
         alignItems: "center",
         borderRadius: "50%",
         transition: "background-color 0.2s, transform 0.2s ease-out",
-        backgroundColor: "transparent", // Color de fondo opcional
+        backgroundColor: "transparent",
         "& img": {
-          fill: "currentColor", // El ícono tomará el color actual
-          transition: "fill 0.2s", // Ajusta la imagen al contenedor
+          fill: "currentColor",
+          transition: "fill 0.2s",
         },
         "& svg": {
-          fill: "currentColor", // El ícono tomará el color actual
+          fill: "currentColor",
           transition: "fill 0.2s",
         },
         "&:hover": {
-          backgroundColor: "rgba(0, 0, 0, 0.08)", // Hover background
+          backgroundColor: "rgba(0, 0, 0, 0.08)",
           transform: "scale(1.2)",
         },
-        ...sx, // Se agregan los estilos adicionales
+        ...sx,
       }}
     >
       {src ? (
-        <img src={src} alt="custom-icon" /> // Si hay un src, muestra una imagen
+        <img src={src} alt="custom-icon" />
       ) : (
-        icon // Si no hay src, muestra el icono
+        icon 
       )}
     </IconButton>
   );
